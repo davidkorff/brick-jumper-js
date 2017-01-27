@@ -10,13 +10,15 @@ function startGame(e){
       displayScore()
       startMovingWalls()
       jump1Listener()
-      jump2Listener()
       shootBullet1Listener()
       shootBullet2Listener()
     }
 }
 
 function startMovingWalls(){
+  if (getBottomPosition(dodger2) === 200){
+    jump2Listener()
+  }
   moveWallLeft(wall0)
   moveWallLeft(wall1)
   moveWallLeft(wall2)
@@ -103,7 +105,7 @@ function jump(e){
 function jump1Listener(){
   document.addEventListener('keydown', jump1) }
 function jump1(e){
-    if (e.which === 87){
+    if (e.which === 38){
       jump1Up()
       document.removeEventListener("keydown", jump1)
     }}
@@ -123,7 +125,20 @@ function jump1Down(){
 }
 
 function jump2Listener(){
-  document.addEventListener('keydown', jump2) }
+  dodger2LeftPosition = getLeftPosition(dodger2)
+  wall5Position = getLeftPosition(wall5)
+  wall6Position = getLeftPosition(wall6)
+  wall7Position = getLeftPosition(wall7)
+  wall8Position = getLeftPosition(wall8)
+  wall9Position = getLeftPosition(wall9)
+  if ((wall5Position === 790) ||
+      (wall6Position === 790) ||
+      (wall7Position === 790) ||
+      (wall8Position === 790) ||
+      (wall9Position === 790)){
+    jump2Up()
+  }
+}
 function jump2(e){
   if (e.which === 38){
     jump2Up()
@@ -148,7 +163,7 @@ function shootBullet1Listener(){
   document.addEventListener('keydown', shoot1)
 }
 function shoot1(e){
-  if (e.which === 50){
+  if (e.which === 16){
     bullet1.style.bottom = `${(getBottomPosition(dodger1)+10)}px`
     shootBullet1()
     document.removeEventListener("keydown", shoot1)
