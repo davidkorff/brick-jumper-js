@@ -2,7 +2,7 @@ function runIndex(){
   score1=0
   score2=0
   gameGoingIndex = true
-  document.getElementById("Instructions").innerHTML="Instructions: Press 'Enter' to Start<br>First to reach 50 points wins.<br> If your opponent is hit by a same color wall, you earn 1 point.<br> If you shoot your opponent, you earn 5 points.<br><br>Red Brick must avoid the Red walls. Blue Brick must avoid the Blue walls.<br>Controls: Red- Press w to jump. Press 2 to shoot.<br>Blue- Up arrow to jump. Press shift to shoot."
+  document.getElementById("Instructions").innerHTML="Instructions: Press 'Enter' to Start<br>First to reach 50 points wins.<br> If your opponent is hit by a same color wall, you earn 1 point.<br> If you shoot your opponent, you earn 5 points.<br><br>Red Brick must avoid the Red walls. Blue Brick must avoid the Blue walls.<br>Controls: Red- Press w to jump. Press 2 to shoot.<br>Blue- Up arrow to jump. Press shift to shoot.<br>"
   // document.removeEventListener("keydown", startGameArtificial)
   // document.removeEventListener("keydown", startGameDoubleArtificial)
   document.addEventListener('keydown', startGameIndex)
