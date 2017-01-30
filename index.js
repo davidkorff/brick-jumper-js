@@ -28,7 +28,7 @@ function startMovingWalls(){
   moveWallRight(wall8)
   moveWallRight(wall9)
   checkCollisions()
-  if (gameGoing==true){setTimeout(startMovingWalls, 5)}
+  if (gameGoing){setTimeout(startMovingWalls, 5)}
 }
 
 function moveWallLeft(object){

@@ -13,7 +13,7 @@
     <div id="game">
       <div id="floor" style="bottom: 190px; left: 0px;"></div>
 
-      <div id="dodger1" style="bottom: 200px; left: 180px;"></div>
+      <div id="dodger1" style="bottom: 200px; left: 160px;"></div>
       <div class="wall1" id="wall0" style="bottom: 190px; left: 1100px;"></div>
       <div class="wall1" id="wall1" style="bottom: 190px; left: 1300px;"></div>
       <div class="wall1" id="wall2" style="bottom: 190px; left: 505px;"></div>
@@ -29,11 +29,13 @@
       <div class="wall2" id="wall9" style="bottom: 190px; left: -300px;"></div>
       <div id="bullet2" style="bottom: 190px; left: 820px;"></div>
     </div>
-    <h1 id="score1"> </h1><br>
+    <div>
+      <h3 id="Instructions">Instructions: First to reach 50 points wins.<br> If your opponent is hit by a wall, you earn 1 point. If you shoot your opponent, you earn 5 points.<br><br>Red Brick must avoid the Red walls. Blue Brick must avoid the Blue walls.<br>Controls: Red- Up arrow to jump. Press shift to shoot.<br>    Blue- Press w to jump. Press 2 to shoot.</h3>
+    </div>
     <h1 id="score2"> Player One:0<br>Player Two:0</h1><br>
-    <h2 id="next"></h2>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- <script src="index.js"> </script> -->
-    <script src="artificial.js"> </script>
+    <!-- <script src="artificial.js"> </script> -->
+    <script src="double_artificial.js"> </script>
   </body>
 </html>

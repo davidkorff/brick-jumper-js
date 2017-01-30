@@ -16,9 +16,8 @@ function startGame(e){
 }
 
 function startMovingWalls(){
-  if (getBottomPosition(dodger2) === 200){
-    jump2Listener()
-  }
+  if (getBottomPosition(dodger2) === 200){jump2Listener()}
+  if (getBottomPosition(dodger1) === 200){jump1Listener()}
   moveWallLeft(wall0)
   moveWallLeft(wall1)
   moveWallLeft(wall2)
@@ -103,12 +102,21 @@ function jump(e){
 } //IMPLIMENT
 
 function jump1Listener(){
-  document.addEventListener('keydown', jump1) }
-function jump1(e){
-    if (e.which === 38){
-      jump1Up()
-      document.removeEventListener("keydown", jump1)
-    }}
+  dodger1LeftPosition = getLeftPosition(dodger1)
+  wall0Position = getLeftPosition(wall0)
+  wall1Position = getLeftPosition(wall1)
+  wall2Position = getLeftPosition(wall2)
+  wall3Position = getLeftPosition(wall3)
+  wall4Position = getLeftPosition(wall4)
+  if ((wall0Position === 210) ||
+      (wall1Position === 210) ||
+      (wall2Position === 210) ||
+      (wall3Position === 210) ||
+      (wall4Position === 210)){
+    jump1Up()
+  }
+}
+
 function jump1Up(){
   dodger1.style.bottom = `${getBottomPosition(dodger1) +3}px`
   if (getBottomPosition(dodger1)<300){
@@ -139,11 +147,7 @@ function jump2Listener(){
     jump2Up()
   }
 }
-function jump2(e){
-  if (e.which === 38){
-    jump2Up()
-    document.removeEventListener("keydown", jump2)
-  }}
+
 function jump2Up(){
   dodger2.style.bottom = `${getBottomPosition(dodger2) +3}px`
   if (getBottomPosition(dodger2)<300){
@@ -160,15 +164,13 @@ function jump2Down(){
 }
 
 function shootBullet1Listener(){
-  document.addEventListener('keydown', shoot1)
+  setTimeout(shoot1, Math.floor((Math.random() * 4000) + 3000))
 }
 function shoot1(e){
-  if (e.which === 16){
-    bullet1.style.bottom = `${(getBottomPosition(dodger1)+10)}px`
-    shootBullet1()
-    document.removeEventListener("keydown", shoot1)
-  }}
-function shootBullet1(e){
+  bullet1.style.bottom = `${(getBottomPosition(dodger1)+10)}px`
+  shootBullet1()
+}
+function shootBullet1(){
   bullet1.style.left = `${getLeftPosition(bullet1)+ 2}px`
   if (getLeftPosition(bullet1) < 1000) {
     setTimeout(shootBullet1, 5)
@@ -176,7 +178,9 @@ function shootBullet1(e){
   else{
     bullet1.style.left = `${180}px`
     bullet1.style.bottom = `${190}px`
-    shootBullet1Listener()
+    if (gameGoing){
+      shootBullet1Listener()
+    }
   }
 }
 
@@ -276,7 +280,6 @@ function resetGame(){
   resetBullet1Position()
   resetBullet2Position()
   displayScore()
-  //document.addEventListener('keydown', startGame)
 }
 
 function displayScore(){
