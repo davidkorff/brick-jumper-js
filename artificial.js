@@ -1,66 +1,74 @@
-score1=0
-score2=0
-gameGoing = true
-document.addEventListener('keydown', startGame)
-
-function startGame(e){
+function runArtificial(){
+  score1=0
+  score2=0
+  gameGoingArtificial = true
+  document.getElementById("Instructions").innerHTML="Instructions: Press 'Enter' to Start<br>First to reach 50 points wins.<br> If your opponent is hit by a same color wall, you earn 1 point.<br> If you shoot your opponent, you earn 5 points.<br><br>Red Brick must avoid the Red walls. Blue Brick must avoid the Blue walls.<br>Controls: Red- Up arrow to jump. Press shift to shoot.<br>"
+  document.addEventListener('keydown', startGameArtificial)
+  let r = document.getElementsByTagName('button');
+  for (let i = (r.length-1); i >= 0; i--) {
+    if(r[i].getAttribute('id') != 'a'){
+        r[i].parentNode.removeChild(r[i]);
+    }
+  }
+}
+function startGameArtificial(e){
   console.log(e.which)
     if (e.which === 13) {
-      document.removeEventListener("keydown", startGame)
-      displayScore()
-      startMovingWalls()
-      jump1Listener()
-      shootBullet1Listener()
-      shootBullet2Listener()
+      document.removeEventListener("keydown", startGameArtificial)
+      displayScoreArtificial()
+      startMovingWallsArtificial()
+      jump1ListenerArtificial()
+      shootBullet1ListenerArtificial()
+      shootBullet2ListenerArtificial()
     }
 }
 
-function startMovingWalls(){
-  if (getBottomPosition(dodger2) === 200){
-    jump2Listener()
+function startMovingWallsArtificial(){
+  if (getBottomPositionArtificial(dodger2) === 200){
+    jump2ListenerArtificial()
   }
-  moveWallLeft(wall0)
-  moveWallLeft(wall1)
-  moveWallLeft(wall2)
-  moveWallLeft(wall3)
-  moveWallLeft(wall4)
-  moveWallRight(wall5)
-  moveWallRight(wall6)
-  moveWallRight(wall7)
-  moveWallRight(wall8)
-  moveWallRight(wall9)
-  checkCollisions()
-  if (gameGoing){setTimeout(startMovingWalls, 5)}
+  moveWallLeftArtificial(wall0)
+  moveWallLeftArtificial(wall1)
+  moveWallLeftArtificial(wall2)
+  moveWallLeftArtificial(wall3)
+  moveWallLeftArtificial(wall4)
+  moveWallRightArtificial(wall5)
+  moveWallRightArtificial(wall6)
+  moveWallRightArtificial(wall7)
+  moveWallRightArtificial(wall8)
+  moveWallRightArtificial(wall9)
+  checkCollisionsArtificial()
+  if (gameGoingArtificial){setTimeout(startMovingWallsArtificial, 5)}
 }
 
-function moveWallLeft(object){
-  object.style.left = `${getLeftPosition(object) - 1}px`
-  if (getLeftPosition(object) < -10) {
+function moveWallLeftArtificial(object){
+  object.style.left = `${getLeftPositionArtificial(object) - 1}px`
+  if (getLeftPositionArtificial(object) < -10) {
     object.style.left = `${1000+Math.floor(Math.random()*150)}px`
   }
 }
-function moveWallRight(object){
-  object.style.left = `${getLeftPosition(object) + 1}px`
-  if (getLeftPosition(object) > 1000) {
+function moveWallRightArtificial(object){
+  object.style.left = `${getLeftPositionArtificial(object) + 1}px`
+  if (getLeftPositionArtificial(object) > 1000) {
     object.style.left = `${-Math.floor(Math.random()*150)}px`
   }
 }
 
-function checkCollisions(){
-  checkWallCollision1()
-  checkWallCollision2()
-  checkBullet1Collision()
-  checkBullet2Collision()
+function checkCollisionsArtificial(){
+  checkWallCollision1Artificial()
+  checkWallCollision2Artificial()
+  checkBullet1CollisionArtificial()
+  checkBullet2CollisionArtificial()
 }
 
-function checkWallCollision1(){
-  dodger1LeftPosition = getLeftPosition(dodger1)
-  dodger1HeightPosition = getBottomPosition(dodger1)
-  wall0Position = getLeftPosition(wall0)
-  wall1Position = getLeftPosition(wall1)
-  wall2Position = getLeftPosition(wall2)
-  wall3Position = getLeftPosition(wall3)
-  wall4Position = getLeftPosition(wall4)
+function checkWallCollision1Artificial(){
+  dodger1LeftPosition = getLeftPositionArtificial(dodger1)
+  dodger1HeightPosition = getBottomPositionArtificial(dodger1)
+  wall0Position = getLeftPositionArtificial(wall0)
+  wall1Position = getLeftPositionArtificial(wall1)
+  wall2Position = getLeftPositionArtificial(wall2)
+  wall3Position = getLeftPositionArtificial(wall3)
+  wall4Position = getLeftPositionArtificial(wall4)
   if (((dodger1LeftPosition+20 === wall0Position) ||
        (dodger1LeftPosition+20 === wall1Position) ||
        (dodger1LeftPosition+20 === wall2Position) ||
@@ -69,18 +77,18 @@ function checkWallCollision1(){
        (dodger1HeightPosition <240 )){
     score1++
     console.log(`Player 1 was hit by a wall. Player 2 has ${score1} point(s).`)
-    displayScore()
-    checkIfPlayerWon()
+    displayScoreArtificial()
+    checkIfPlayerWonArtificial()
   }
 }
-function checkWallCollision2(){
-  dodger2LeftPosition = getLeftPosition(dodger2)
-  dodger2HeightPosition = getBottomPosition(dodger2)
-  wall5Position = getLeftPosition(wall5)
-  wall6Position = getLeftPosition(wall6)
-  wall7Position = getLeftPosition(wall7)
-  wall8Position = getLeftPosition(wall8)
-  wall9Position = getLeftPosition(wall9)
+function checkWallCollision2Artificial(){
+  dodger2LeftPosition = getLeftPositionArtificial(dodger2)
+  dodger2HeightPosition = getBottomPositionArtificial(dodger2)
+  wall5Position = getLeftPositionArtificial(wall5)
+  wall6Position = getLeftPositionArtificial(wall6)
+  wall7Position = getLeftPositionArtificial(wall7)
+  wall8Position = getLeftPositionArtificial(wall8)
+  wall9Position = getLeftPositionArtificial(wall9)
   if (((dodger2LeftPosition === wall5Position+10) ||
        (dodger2LeftPosition === wall6Position+10) ||
        (dodger2LeftPosition === wall7Position+10) ||
@@ -89,153 +97,145 @@ function checkWallCollision2(){
        (dodger2HeightPosition <240 )){
     score2++
     console.log(`Player 2 was hit by a wall. Player 1 has ${score2} point(s).`)
-    displayScore()
-    checkIfPlayerWon()
+    displayScoreArtificial()
+    checkIfPlayerWonArtificial()
   }
 }
 
-function jump(e){
-  if(e.which === 87){
-    jump1Up(e)
-  } else if(e.which == 38){
-    jump2Up(e)
-  }
-} //IMPLIMENT
-
-function jump1Listener(){
-  document.addEventListener('keydown', jump1) }
-function jump1(e){
+function jump1ListenerArtificial(){
+  document.addEventListener('keydown', jump1Artificial) }
+function jump1Artificial(e){
     if (e.which === 38){
-      jump1Up()
-      document.removeEventListener("keydown", jump1)
+      jump1UpArtificial()
+      document.removeEventListener("keydown", jump1Artificial)
     }}
-function jump1Up(){
-  dodger1.style.bottom = `${getBottomPosition(dodger1) +3}px`
-  if (getBottomPosition(dodger1)<300){
-    setTimeout(jump1Up, 10)
+function jump1UpArtificial(){
+  dodger1.style.bottom = `${getBottomPositionArtificial(dodger1) +3}px`
+  if (getBottomPositionArtificial(dodger1)<300){
+    setTimeout(jump1UpArtificial, 10)
   }
-  else{jump1Down()}
+  else{jump1DownArtificial()}
 }
-function jump1Down(){
-  dodger1.style.bottom = `${getBottomPosition(dodger1)- 3}px`
-  if (getBottomPosition(dodger1)>200){
-    setTimeout(jump1Down, 10)
+function jump1DownArtificial(){
+  dodger1.style.bottom = `${getBottomPositionArtificial(dodger1)- 3}px`
+  if (getBottomPositionArtificial(dodger1)>200){
+    setTimeout(jump1DownArtificial, 10)
   }
-  else{jump1Listener()}
+  else{jump1ListenerArtificial()}
 }
 
-function jump2Listener(){
-  dodger2LeftPosition = getLeftPosition(dodger2)
-  wall5Position = getLeftPosition(wall5)
-  wall6Position = getLeftPosition(wall6)
-  wall7Position = getLeftPosition(wall7)
-  wall8Position = getLeftPosition(wall8)
-  wall9Position = getLeftPosition(wall9)
+function jump2ListenerArtificial(){
+  dodger2LeftPosition = getLeftPositionArtificial(dodger2)
+  wall5Position = getLeftPositionArtificial(wall5)
+  wall6Position = getLeftPositionArtificial(wall6)
+  wall7Position = getLeftPositionArtificial(wall7)
+  wall8Position = getLeftPositionArtificial(wall8)
+  wall9Position = getLeftPositionArtificial(wall9)
   if ((wall5Position === 780) ||
       (wall6Position === 780) ||
       (wall7Position === 780) ||
       (wall8Position === 780) ||
       (wall9Position === 780)){
-    jump2Up()
+    jump2UpArtificial()
   }
 }
-function jump2(e){
+function jump2Artificial(e){
   if (e.which === 38){
-    jump2Up()
-    document.removeEventListener("keydown", jump2)
+    jump2UpArtificial()
+    document.removeEventListener("keydown", jump2Artificial)
   }}
-function jump2Up(){
-  dodger2.style.bottom = `${getBottomPosition(dodger2) +3}px`
-  if (getBottomPosition(dodger2)<300){
-    setTimeout(jump2Up, 10)
+function jump2UpArtificial(){
+  dodger2.style.bottom = `${getBottomPositionArtificial(dodger2) +3}px`
+  if (getBottomPositionArtificial(dodger2)<300){
+    setTimeout(jump2UpArtificial, 10)
   }
-  else{jump2Down()}
+  else{jump2DownArtificial()}
 }
-function jump2Down(){
-  dodger2.style.bottom = `${getBottomPosition(dodger2) - 3}px`
-  if (getBottomPosition(dodger2)>200){
-    setTimeout(jump2Down, 10)
+function jump2DownArtificial(){
+  dodger2.style.bottom = `${getBottomPositionArtificial(dodger2) - 3}px`
+  if (getBottomPositionArtificial(dodger2)>200){
+    setTimeout(jump2DownArtificial, 10)
   }
-  else{jump2Listener()}
+  else{jump2ListenerArtificial()}
 }
 
-function shootBullet1Listener(){
-  document.addEventListener('keydown', shoot1)
+function shootBullet1ListenerArtificial(){
+  document.addEventListener('keydown', shoot1Artificial)
 }
-function shoot1(e){
+function shoot1Artificial(e){
   if (e.which === 16){
-    bullet1.style.bottom = `${(getBottomPosition(dodger1)+10)}px`
-    shootBullet1()
-    document.removeEventListener("keydown", shoot1)
+    bullet1.style.bottom = `${(getBottomPositionArtificial(dodger1)+10)}px`
+    shootBullet1Artificial()
+    document.removeEventListener("keydown", shoot1Artificial)
   }}
-function shootBullet1(e){
-  bullet1.style.left = `${getLeftPosition(bullet1)+ 2}px`
-  if (getLeftPosition(bullet1) < 1000) {
-    setTimeout(shootBullet1, 5)
+function shootBullet1Artificial(e){
+  bullet1.style.left = `${getLeftPositionArtificial(bullet1)+ 2}px`
+  if (getLeftPositionArtificial(bullet1) < 1000) {
+    setTimeout(shootBullet1Artificial, 5)
   }
   else{
     bullet1.style.left = `${180}px`
     bullet1.style.bottom = `${190}px`
-    shootBullet1Listener()
+    shootBullet1ListenerArtificial()
   }
 }
 
-function shootBullet2Listener(){
-  setTimeout(shoot2, Math.floor((Math.random() * 4000) + 3000))
+function shootBullet2ListenerArtificial(){
+  setTimeout(shoot2Artificial, Math.floor((Math.random() * 4000) + 3000))
 }
 
-function shoot2(){
-    bullet2.style.bottom = `${(getBottomPosition(dodger2)+10)}px`
-    shootBullet2()
+function shoot2Artificial(){
+    bullet2.style.bottom = `${(getBottomPositionArtificial(dodger2)+10)}px`
+    shootBullet2Artificial()
 }
-function shootBullet2(){
-  bullet2.style.left = `${getLeftPosition(bullet2) - 2}px`
-  if (getLeftPosition(bullet2) > 0) {
-    setTimeout(shootBullet2, 5)
+function shootBullet2Artificial(){
+  bullet2.style.left = `${getLeftPositionArtificial(bullet2) - 2}px`
+  if (getLeftPositionArtificial(bullet2) > 0) {
+    setTimeout(shootBullet2Artificial, 5)
   }
   else{
     bullet2.style.left = `${820}px`
     bullet2.style.bottom = `${190}px`
-    if (gameGoing){
-      shootBullet2Listener()
+    if (gameGoingArtificial){
+      shootBullet2ListenerArtificial()
     }
   }
 }
 
-function checkBullet1Collision(){
-  dodger2LeftPosition = getLeftPosition(dodger2)
-  dodger2HeightPosition = getBottomPosition(dodger2)
-  bullet1LeftPosition = getLeftPosition(bullet1)
-  bullet1HeightPosition = getBottomPosition(bullet1)
+function checkBullet1CollisionArtificial(){
+  dodger2LeftPosition = getLeftPositionArtificial(dodger2)
+  dodger2HeightPosition = getBottomPositionArtificial(dodger2)
+  bullet1LeftPosition = getLeftPositionArtificial(bullet1)
+  bullet1HeightPosition = getBottomPositionArtificial(bullet1)
   if ((dodger2LeftPosition <= bullet1LeftPosition) &&
       (dodger2LeftPosition+20 >= bullet1LeftPosition) &&
       (dodger2HeightPosition <= bullet1HeightPosition) &&
       (dodger2HeightPosition+20 >= bullet1HeightPosition)){
     score2 = score2 + 5
     console.log(`Player 2 was hit by a bullet. Player 1 has ${score2} point(s).`)
-    resetBullet1Position()
-    displayScore()
-    checkIfPlayerWon()
+    resetBullet1PositionArtificial()
+    displayScoreArtificial()
+    checkIfPlayerWonArtificial()
   }
 }
-function checkBullet2Collision(){
-  dodger1LeftPosition = getLeftPosition(dodger1)
-  dodger1HeightPosition = getBottomPosition(dodger1)
-  bullet2LeftPosition = getLeftPosition(bullet2)
-  bullet2HeightPosition = getBottomPosition(bullet2)
+function checkBullet2CollisionArtificial(){
+  dodger1LeftPosition = getLeftPositionArtificial(dodger1)
+  dodger1HeightPosition = getBottomPositionArtificial(dodger1)
+  bullet2LeftPosition = getLeftPositionArtificial(bullet2)
+  bullet2HeightPosition = getBottomPositionArtificial(bullet2)
   if ((dodger1LeftPosition <= bullet2LeftPosition) &&
       (dodger1LeftPosition+20 >= bullet2LeftPosition) &&
       (dodger1HeightPosition <= bullet2HeightPosition) &&
       (dodger1HeightPosition+20 >= bullet2HeightPosition)){
     score1 = score1+5
     console.log(`Player 1 was hit by a bullet. Player 2 has ${score1} point(s).`)
-    resetBullet2Position()
-    displayScore()
-    checkIfPlayerWon()
+    resetBullet2PositionArtificial()
+    displayScoreArtificial()
+    checkIfPlayerWonArtificial()
   }
 }
 
-function resetAllWallPositions(){
+function resetAllWallPositionsArtificial(){
   wall0.style.left = `${1100}px`
   wall1.style.left = `${1300}px`
   wall2.style.left = `${500}px`
@@ -247,46 +247,46 @@ function resetAllWallPositions(){
   wall8.style.left = `${-100}px`
   wall9.style.left = `${-300}px`
 }
-function resetBullet1Position(){
+function resetBullet1PositionArtificial(){
   if (parseInt(bullet1.style.left.replace('px', ''),10)===180){
     bullet1.style.left = `${180}px`}
   else{bullet1.style.left = `${1000}px`}
 }
-function resetBullet2Position(){
+function resetBullet2PositionArtificial(){
   if (parseInt(bullet2.style.left.replace('px', ''),10)===820){
     bullet2.style.left = `${820}px`}
   else{bullet2.style.left = `${0}px`}
 }
 
-function checkIfPlayerWon(){
-  if (score1 >= 50) {askNewGame(2)}
-  else if (score2 >= 50) {askNewGame(1)}
+function checkIfPlayerWonArtificial(){
+  if (score1 >= 50) {askNewGameArtificial(2)}
+  else if (score2 >= 50) {askNewGameArtificial(1)}
 }
 
-function askNewGame(num){
+function askNewGameArtificial(num){
   if (confirm(`Player ${num} wins. Press Enter to Start a new Game`) == true){}
-  else{gameGoing = false}
-  resetGame()
+  else{gameGoingArtificial = false}
+  resetGameArtificial()
 }
 
-function resetGame(){
+function resetGameArtificial(){
   score1=0
   score2=0
-  resetAllWallPositions()
-  resetBullet1Position()
-  resetBullet2Position()
-  displayScore()
+  resetAllWallPositionsArtificial()
+  resetBullet1PositionArtificial()
+  resetBullet2PositionArtificial()
+  displayScoreArtificial()
   //document.addEventListener('keydown', startGame)
 }
 
-function displayScore(){
+function displayScoreArtificial(){
   document.getElementById("score2").innerHTML=`Player One:${score2}<br> Player Two:${score1}`
 }
 
-function getLeftPosition(object){
+function getLeftPositionArtificial(object){
   return parseInt(object.style.left.replace('px', ''))
 }
 
-function getBottomPosition(object){
+function getBottomPositionArtificial(object){
   return parseInt(object.style.bottom.replace('px', ''))
 }
