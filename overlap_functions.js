@@ -65,7 +65,8 @@ function resetBullet2Position(){
 }
 
 function resetGame(){
-  initializeConstants()
+  score1 =0
+  score2 =0
   resetAllWallPositions()
   resetBullet1Position()
   resetBullet2Position()
