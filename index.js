@@ -84,7 +84,7 @@ function shootBullet1Index(e){
     setTimeout(shootBullet1Index, 5)
   }
   else{
-    bullet1.style.left = `${190}px`
+    bullet1.style.left = `${180}px`
     bullet1.style.bottom = `${190}px`
     shootBullet1ListenerIndex()
   }

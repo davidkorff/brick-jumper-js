@@ -36,7 +36,7 @@ function getBottomPosition(object){
 }
 
 function displayScore(){
-  document.getElementById("score2").innerHTML=`Player One:${score2}<br> Player Two:${score1}`
+  document.getElementById("score2").innerHTML=`Red:${score2}<br> Blue:${score1}`
 }
 
 function resetAllWallPositions(){
@@ -72,15 +72,15 @@ function resetGame(){
   displayScore()
 }
 
-function askNewGame(num){
-  if (confirm(`Player ${num} wins. Press Enter to Start a new Game`) == true){}
+function askNewGame(player){
+  if (confirm(`${player} wins. Press Enter to Start a new Game`) == true){}
   else{gameGoing = false}
   resetGame()
 }
 
 function checkIfPlayerWon(){
-  if (score1 >= 50) {askNewGame(2)}
-  else if (score2 >= 50) {askNewGame(1)}
+  if (score1 >= 50) {askNewGame('Blue')}
+  else if (score2 >= 50) {askNewGame('Red')}
 }
 
 function checkBullet2Collision(){
@@ -89,7 +89,6 @@ function checkBullet2Collision(){
       (getBottomPosition(dodger1) <= getBottomPosition(bullet2)) &&
       (getBottomPosition(dodger1)+20 >= getBottomPosition(bullet2))){
     score1 = score1+5
-    console.log(`Player 1 was hit by a bullet. Player 2 has ${score1} point(s).`)
     resetBullet2Position()
     displayScore()
     checkIfPlayerWon()
@@ -102,7 +101,6 @@ function checkBullet1Collision(){
       (getBottomPosition(dodger2) <= getBottomPosition(bullet1)) &&
       (getBottomPosition(dodger2)+20 >= getBottomPosition(bullet1))){
     score2 = score2 + 5
-    console.log(`Player 2 was hit by a bullet. Player 1 has ${score2} point(s).`)
     resetBullet1Position()
     displayScore()
     checkIfPlayerWon()
@@ -117,7 +115,6 @@ function checkWallCollision1(){
        (getLeftPosition(dodger1)+20 === getLeftPosition(wall4))) &&
        (getBottomPosition(dodger1) <240 )){
     score1++
-    console.log(`Player 1 was hit by a wall. Player 2 has ${score1} point(s).`)
     displayScore()
     checkIfPlayerWon()
   }
@@ -131,7 +128,6 @@ function checkWallCollision2(){
        (getLeftPosition(dodger2) === getLeftPosition(wall9)+10)) &&
        (getBottomPosition(dodger2) <240 )){
     score2++
-    console.log(`Player 2 was hit by a wall. Player 1 has ${score2} point(s).`)
     displayScore()
     checkIfPlayerWon()
   }
