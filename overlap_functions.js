@@ -74,7 +74,7 @@ function resetGame(){
 }
 
 function askNewGame(player){
-  if (confirm(`${player} wins. Press Enter to Start a new Game`) == true){}
+  if (confirm(`${player} wins. Press OK to Start a new Game`) == true){}
   else{gameGoing = false}
   resetGame()
 }
