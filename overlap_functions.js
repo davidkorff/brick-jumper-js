@@ -53,16 +53,16 @@ function displayScore(){
 }
 
 function resetAllWallPositions(){
-  wall0.style.left = `${1100}px`
-  wall1.style.left = `${1300}px`
-  wall2.style.left = `${500}px`
-  wall3.style.left = `${700}px`
-  wall4.style.left = `${900}px`
-  wall5.style.left = `${495}px`
-  wall6.style.left = `${300}px`
-  wall7.style.left = `${100}px`
-  wall8.style.left = `${-100}px`
-  wall9.style.left = `${-300}px`
+  wall0.style.left = `${1005}px`
+  wall1.style.left = `${1200}px`
+  wall2.style.left = `${1400}px`
+  wall3.style.left = `${1600}px`
+  wall4.style.left = `${1800}px`
+  wall5.style.left = `${-5}px`
+  wall6.style.left = `${-200}px`
+  wall7.style.left = `${-400}px`
+  wall8.style.left = `${-600}px`
+  wall9.style.left = `${-800}px`
 }
 function resetAllWallOpacity(){
   wall0.style.opacity=0
