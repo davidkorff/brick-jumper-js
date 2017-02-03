@@ -14,16 +14,25 @@ function initializeConstants(){
 }
 
 function moveWallLeft(object){
+  console.log("fuckthis")
   object.style.left = `${getLeftPosition(object) - 1}px`
+  if (getLeftPosition(object)<800){
+    object.style.opacity = getOpacity(object)+.005
+  }
   if (getLeftPosition(object) < -10) {
     object.style.left = `${1000+Math.floor(Math.random()*150)}px`
+    object.style.opacity = 0
   }
 }
 
 function moveWallRight(object){
   object.style.left = `${getLeftPosition(object) + 1}px`
+  if (getLeftPosition(object)>200){
+    object.style.opacity = getOpacity(object)+.005
+  }
   if (getLeftPosition(object) > 1000) {
     object.style.left = `${-Math.floor(Math.random()*150)}px`
+    object.style.opacity = 0
   }
 }
 
@@ -33,6 +42,10 @@ function getLeftPosition(object){
 
 function getBottomPosition(object){
   return parseInt(object.style.bottom.replace('px', ''))
+}
+
+function getOpacity(object){
+  return parseFloat(object.style.opacity)
 }
 
 function displayScore(){
@@ -51,6 +64,19 @@ function resetAllWallPositions(){
   wall8.style.left = `${-100}px`
   wall9.style.left = `${-300}px`
 }
+function resetAllWallOpacity(){
+  wall0.style.opacity=0
+  wall1.style.opacity=0
+  wall2.style.opacity=0
+  wall3.style.opacity=0
+  wall4.style.opacity=0
+  wall5.style.opacity=0
+  wall6.style.opacity=0
+  wall7.style.opacity=0
+  wall8.style.opacity=0
+  wall9.style.opacity=0
+}
+
 
 function resetBullet1Position(){
   if (parseInt(bullet1.style.left.replace('px', ''),10)===180){
