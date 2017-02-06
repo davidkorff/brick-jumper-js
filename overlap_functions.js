@@ -14,7 +14,6 @@ function initializeConstants(){
 }
 
 function moveWallLeft(object){
-  console.log("fuckthis")
   object.style.left = `${getLeftPosition(object) - 1}px`
   if (getLeftPosition(object)<800){
     object.style.opacity = getOpacity(object)+.005
