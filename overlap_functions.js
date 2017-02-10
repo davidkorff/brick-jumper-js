@@ -93,8 +93,10 @@ function resetGame(){
   score1 =0
   score2 =0
   resetAllWallPositions()
+  resetAllWallOpacity()
   resetBullet1Position()
   resetBullet2Position()
+
   displayScore()
 }
 
