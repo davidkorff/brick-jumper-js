@@ -1,14 +1,14 @@
-# brick-jumper-js
+# Brick-Jumper
 
 * Play Vs. a friend, vs a computer, or just let the computer battle it out vs. itself.
 
-* Jump over wall of the same color as your player. 
+* Jump over wall of the same color as your player.
 
 * If you get hit, your opponent earn 1 point.
 
-* Shoot your opponent for 5 points. 
+* Shoot your opponent for 5 points.
 
-* First to reach 50 points wins. 
+* First to reach 50 points wins.
 
 Human vs. Human controls:
 * Press 'Enter' to Start
@@ -20,4 +20,4 @@ Human vs. Computer controls:
 * Red- Up arrow to jump. Press shift to shoot.
 
 Computer vs. Computer controls:
-*  Just press Enter and watch the computer battle it out. 
+*  Just press Enter and watch the computer battle it out.
